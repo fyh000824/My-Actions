@@ -20,6 +20,10 @@ jobs:
         run: npm install
 
       - name: 运行电信签到
-        run: node function/10000/10000.js
+        # 重点：env 要和 run 同级，缩进两个空格
         env:
+          # 强制引用，绝对不会丢
+          TELECOM_MOBILE: ${{ secrets.TELECOM_MOBILE }}
+          SEND_KEY: ${{ secrets.SEND_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
+        run: node function/10000/10000.js
